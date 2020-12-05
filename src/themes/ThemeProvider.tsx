@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { MuiThemeProvider } from '@material-ui/core'
+import { MuiThemeProvider, CssBaseline } from '@material-ui/core'
 import { getThemeByName } from './Base'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -7,7 +7,7 @@ export const ThemeContext = React.createContext((themeName: string) => {})
 
 const ThemeProvider: React.FC = props => {
   // State to hold the selected theme name
-  const [themeName, setThemeName] = useState('LightTheme')
+  const [themeName, setThemeName] = useState('darkTheme')
 
   // const useStyles = makeStyles(theme => ({
   //   root: {
@@ -39,7 +39,10 @@ const ThemeProvider: React.FC = props => {
   const theme = getThemeByName(themeName)
   return (
     <ThemeContext.Provider value={setThemeName}>
-      <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </MuiThemeProvider>
     </ThemeContext.Provider>
   )
 }

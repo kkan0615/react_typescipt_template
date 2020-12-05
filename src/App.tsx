@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
   BrowserRouter, Route, Link, Switch,
 } from 'react-router-dom'
