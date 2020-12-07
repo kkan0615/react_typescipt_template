@@ -20,9 +20,26 @@ const config: webpack.Configuration = {
           },
         },
       },
+      // {
+      //   test: /\.tsx?$/,
+      //   use: 'ts-loader',
+      //   exclude: /node_modules/,
+      // },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader', // creates style nodes from JS strings
+          'css-loader', // translates CSS into CommonJS
+          'sass-loader', // compiles Sass to CSS, using Node Sass by default
+        ],
+        exclude: /node_modules/,
+      },
     ],
   },
   resolve: {
+    alias: {
+      '@': 'src/',
+    },
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
@@ -30,6 +47,7 @@ const config: webpack.Configuration = {
     filename: 'bundle.js',
   },
   devServer: {
+    historyApiFallback: true,
     contentBase: path.join(__dirname, 'build'),
     compress: true,
     port: 8080,
