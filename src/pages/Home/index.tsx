@@ -1,20 +1,14 @@
 import React, { useContext } from 'react'
-import { Button, makeStyles } from '@material-ui/core'
+import { Button } from '@material-ui/core'
+import './style/index.scss'
 import { ThemeContext } from '../../themes/ThemeProvider'
 
 const Home: React.FC = () => {
   const setThemeName = useContext(ThemeContext)
 
-  const useStyles = makeStyles(theme => ({
-    root: {
-      background: theme.palette.background.default,
-    },
-  }))
-
-  const classes = useStyles()
-
   return (
-    <div className={classes.root}>
+    <div className="home">
+      <div className="rotate" />
       <Button
         variant="contained"
         color="primary"
