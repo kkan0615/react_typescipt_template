@@ -7,6 +7,7 @@ import DefaultLayout from './layouts/default'
 import Test from './pages/Test/index'
 import Clocks from './pages/Clocks/index'
 import Home from './pages/Home'
+import NotFound from './pages/Error/404/index'
 
 const App: React.FC = () => {
   const useStyles = makeStyles(theme => ({
@@ -33,6 +34,7 @@ const App: React.FC = () => {
             Home
           </Button>
         </Link>
+        <Link to="/error">To the error~</Link>
         <Switch>
           <Route path="/Home" component={Home} />
           <Route path="/Test" component={Test} />
@@ -43,6 +45,7 @@ const App: React.FC = () => {
               </Switch>
             </DefaultLayout>
           </Route>
+          <Route component={NotFound} />
         </Switch>
       </div>
     </BrowserRouter>
