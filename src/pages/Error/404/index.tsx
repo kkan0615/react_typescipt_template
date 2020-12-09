@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    overFlow: 'hidden',
   },
   button: {
     margin: theme.spacing(1),
@@ -33,12 +34,7 @@ const NotFound: React.FC = () => {
   }
 
   return (
-    <div
-      className={classes.paper}
-    >
-      <Typography variant="h1" component="h2" gutterBottom>
-        404
-      </Typography>
+    <div className="error-404-page">
       <div className="rocket">
         <div className="rocket-body">
           <div className="body" />
@@ -68,26 +64,38 @@ const NotFound: React.FC = () => {
           <li />
         </ul>
       </div>
-      <Grid
-        container
-        spacing={2}
-        justify="center"
-      >
+      <div className="content">
+        <div className="text-part">
+          <Typography variant="h1" component="h2" gutterBottom>
+            404
+          </Typography>
+          <br />
+          <Typography variant="h6" component="h2" gutterBottom>
+            Sorry there is no page you are looking for
+          </Typography>
+        </div>
         <Grid
-          item
+          container
+          spacing={2}
+          justify="center"
+          className="buttons"
         >
-          <Button className={classes.button} variant="contained" color="primary" onClick={backToHome}>
-            HOME
-          </Button>
+          <Grid
+            item
+          >
+            <Button className={classes.button} variant="outlined" onClick={goBack}>
+              Back
+            </Button>
+          </Grid>
+          <Grid
+            item
+          >
+            <Button className={classes.button} variant="contained" color="primary" onClick={backToHome}>
+              HOME
+            </Button>
+          </Grid>
         </Grid>
-        <Grid
-          item
-        >
-          <Button className={classes.button} variant="outlined" onClick={goBack}>
-            Back
-          </Button>
-        </Grid>
-      </Grid>
+      </div>
     </div>
   )
 }

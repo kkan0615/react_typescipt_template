@@ -6,13 +6,31 @@ $red: #f01a19;
 $darkred: #a75248;
 
 .error-404-page {
-  min-height: 100vh;
-  max-width: 100vw;
-  overflow: hidden;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  max-width: 150%;
+  height: 100%;
+  overflow-x: hidden;
+  //min-height: 100vh;
+  //max-width: 100vw;
+  //overflow: hidden;
+  //text-align: center;
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+  .content {
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .buttons {
+    transform: translateX(-10px);
+  }
+
+  .text-part {
+    text-align: center;
+  }
 }
 
 .rocket {
@@ -22,9 +40,9 @@ $darkred: #a75248;
   width: 80px;
   left: calc(50% - 60px);
   animation: bounce 0.5s infinite;
-  -webkit-animation: animateRocket 30s linear infinite;
-  -moz-animation: animateRocket 30s linear infinite;
-  animation: animateRocket 30s linear infinite;
+  -webkit-animation: animateRocket 10s linear infinite;
+  -moz-animation: animateRocket 10s linear infinite;
+  animation: animateRocket 10s linear infinite;
   .rocket-body {
     width: 80px;
     left: calc(50% - 50px);
