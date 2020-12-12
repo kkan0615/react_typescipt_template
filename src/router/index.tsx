@@ -3,7 +3,7 @@ import {
   Route, Link, Switch,
 } from 'react-router-dom'
 import { Button, makeStyles } from '@material-ui/core'
-import DefaultLayout from '../layouts/default'
+import DefaultLayout from '../layouts/Default/index'
 import Test from '../pages/Test/index'
 import Clocks from '../pages/Clocks/index'
 import Home from '../pages/Home'
