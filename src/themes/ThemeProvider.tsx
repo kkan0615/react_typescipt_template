@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { MuiThemeProvider, CssBaseline } from '@material-ui/core'
-import { getThemeByName } from './Base'
+import { getThemeByName } from './base'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const ThemeContext = React.createContext((themeName: string) => {})
