@@ -3,6 +3,8 @@ import {
   BrowserRouter,
 } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core'
+import { Provider } from 'react-redux'
+import configureStore from './store'
 import RouterIndex from './router/index'
 
 const App: React.FC = () => {
@@ -15,9 +17,11 @@ const App: React.FC = () => {
   const classes = useStyles()
 
   return (
-    <BrowserRouter>
-      <RouterIndex />
-    </BrowserRouter>
+    <Provider store={configureStore()}>
+      <BrowserRouter>
+        <RouterIndex />
+      </BrowserRouter>
+    </Provider>
   )
 }
 

@@ -3,7 +3,6 @@ import {
   Link,
 } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core'
-// import RouterIndex from './router/index'
 import Drawer from '@material-ui/core/Drawer'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import List from '@material-ui/core/List'

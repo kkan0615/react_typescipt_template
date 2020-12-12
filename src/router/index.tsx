@@ -35,12 +35,12 @@ const RouterIndex: React.FC = () => {
       </Link>
       <Link to="/error">To the error~</Link>
       <Switch>
-        <Route path="/Home" component={Home} />
-        <Route path="/Test" component={Test} />
-        <Route path={['/Clocks']}>
+        <Route path={['/Clocks', '/Home', '/Test']}>
           <DefaultLayout>
             <Switch>
               <Route path="/Clocks" component={Clocks} />
+              <Route path="/Home" component={Home} />
+              <Route path="/Test" component={Test} />
             </Switch>
           </DefaultLayout>
         </Route>

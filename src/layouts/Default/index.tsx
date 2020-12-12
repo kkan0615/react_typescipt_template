@@ -1,13 +1,21 @@
 import React from 'react'
+import { useSelector, useDispatch, connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 
+import { RootState } from '../../store'
+import { globalActions } from '../../store/actions/global'
 import DrawerLayout from './components/drawer'
 
 const drawerWidth = '17em'
+
+// const mapStateToProps = (state: RootState) => ({
+//   drawer: state,
+// })
+// const mapDispatchToProps = { globalActions }
 
 const DefaultLayout: React.FC = props => {
   const { children } = props
@@ -47,16 +55,21 @@ const DefaultLayout: React.FC = props => {
   }))
   const classes = useStyles()
 
-  const [drawerOpen, setDrawerOpen] = React.useState(true)
+  // const [drawerOpen, setDrawerOpen] = React.useState(true)
+  const dispatch = useDispatch()
+  const drawerStatus = useSelector<RootState>(store => store.global.drawer) as boolean
 
+  console.log(drawerStatus)
   const handleDrawerState = () => {
-    setDrawerOpen(!drawerOpen)
+    // setDrawerOpen(!drawerOpen)
+    if (drawerStatus) dispatch(globalActions.closeDrawer())
+    else dispatch(globalActions.openDrawer())
   }
 
   return (
     <div>
       <AppBar
-        className={drawerOpen ? classes.appBarShift : classes.appBar}
+        className={drawerStatus ? classes.appBarShift : classes.appBar}
         elevation={0}
         position="relative"
         variant="elevation"
@@ -72,10 +85,10 @@ const DefaultLayout: React.FC = props => {
         </Toolbar>
       </AppBar>
       <DrawerLayout
-        open={drawerOpen}
+        open={drawerStatus}
         width={drawerWidth}
       />
-      <main className={drawerOpen ? classes.contentShift : classes.content}>
+      <main className={drawerStatus ? classes.contentShift : classes.content}>
         {children}
       </main>
     </div>
@@ -83,3 +96,7 @@ const DefaultLayout: React.FC = props => {
 }
 
 export default DefaultLayout
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(DefaultLayout)
