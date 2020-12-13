@@ -1,9 +1,9 @@
 import {
   CLOSE_DRAWER,
-  GlobalActions, initState, OPEN_DRAWER,
+  IGlobalActions, IGlobalState, initState, OPEN_DRAWER, ADD_SNACKBAR, REMOVE_SNACKBAR,
 } from '../actions/global'
 
-export const reducer = (state = initState, action: GlobalActions): any => {
+export const reducer = (state = initState, action: IGlobalActions): IGlobalState => {
   switch (action.type) {
     case OPEN_DRAWER:
       return {
@@ -14,6 +14,14 @@ export const reducer = (state = initState, action: GlobalActions): any => {
       return {
         ...state,
         drawer: false,
+      }
+    case ADD_SNACKBAR:
+      return {
+        ...state,
+      }
+    case REMOVE_SNACKBAR:
+      return {
+        ...state,
       }
     default:
       return state
