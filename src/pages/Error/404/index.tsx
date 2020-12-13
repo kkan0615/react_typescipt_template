@@ -26,7 +26,7 @@ const NotFound: React.FC = () => {
   const classes = useStyles()
 
   function backToHome() {
-    history.push('/Clocks')
+    history.push('/Home')
   }
 
   function goBack() {

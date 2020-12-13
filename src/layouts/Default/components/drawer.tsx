@@ -3,14 +3,18 @@ import {
   Link,
 } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core'
-// import RouterIndex from './router/index'
+/* Collection of import from material ui */
 import Drawer from '@material-ui/core/Drawer'
+import Divider from '@material-ui/core/Divider'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import EmailIcon from '@material-ui/icons/Email'
+import { ExtendedRouteConfig } from '@/types/routerConfig'
+import DrawerMenu from './drawerMenu'
+import { sampleRouterConfig } from '../../../router/modules/sample'
 
 interface IProps {
   open: boolean
@@ -29,6 +33,7 @@ const DrawerLayout: React.FC<IProps> = props => {
 
   const classes = useStyles()
   const { open, width } = props
+  const menus: Array<ExtendedRouteConfig> = [sampleRouterConfig, sampleRouterConfig]
 
   return (
     <Drawer
@@ -43,6 +48,7 @@ const DrawerLayout: React.FC<IProps> = props => {
         style={{ width }}
       >
         DrawerDrawer
+        <Divider />
         <List
           component="nav"
           aria-labelledby="nested-list-subheader"
@@ -82,6 +88,13 @@ const DrawerLayout: React.FC<IProps> = props => {
             </ListItemIcon>
             <ListItemText primary="Clocks" />
           </ListItem>
+          {
+            menus.map(menu => (
+              <DrawerMenu
+                router={menu}
+              />
+            ))
+          }
         </List>
       </div>
     </Drawer>

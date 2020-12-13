@@ -1,14 +1,16 @@
+import { RouteProps } from 'react-router-dom'
+
 /**
  * _id - from mongoDB
  * name - name of router
- * component - import from tsx
- * path - path of router, ex) test/test2
- * children - Array of Routers
+ * title - title of router
+ * childrenRoutes - Array of Routers
  */
-export interface RouterConfig {
+export interface ExtendedRouteConfig extends RouteProps {
   _id: string
+  icon?: string
   name: string
-  component: string
+  title: string
   path: string
-  children: Array<RouterConfig>
+  childrenRoutes?: Array<ExtendedRouteConfig>
 }

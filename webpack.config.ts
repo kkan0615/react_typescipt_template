@@ -37,8 +37,9 @@ const config: webpack.Configuration = {
     ],
   },
   resolve: {
+    symlinks: true,
     alias: {
-      '@': 'src/',
+      '@/*': ['src/*'],
     },
     extensions: ['.tsx', '.ts', '.js'],
   },

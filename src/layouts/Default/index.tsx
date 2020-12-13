@@ -1,10 +1,14 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import AccountCircle from '@material-ui/icons/AccountCircle'
 
+import { RootState } from '../../store'
+import { globalActions } from '../../store/actions/global'
 import DrawerLayout from './components/drawer'
 
 const drawerWidth = '17em'
@@ -21,7 +25,7 @@ const DefaultLayout: React.FC = props => {
       }),
     },
     appBarShift: {
-      // background: theme.palette.background.default,
+      background: theme.palette.background.default,
       width: `calc(100% - ${drawerWidth})`,
       marginLeft: drawerWidth,
       transition: theme.transitions.create(['margin', 'width'], {
@@ -47,16 +51,18 @@ const DefaultLayout: React.FC = props => {
   }))
   const classes = useStyles()
 
-  const [drawerOpen, setDrawerOpen] = React.useState(true)
+  const dispatch = useDispatch()
+  const drawerStatus = useSelector<RootState>(store => store.global.drawer) as boolean
 
   const handleDrawerState = () => {
-    setDrawerOpen(!drawerOpen)
+    if (drawerStatus) dispatch(globalActions.closeDrawer())
+    else dispatch(globalActions.openDrawer())
   }
 
   return (
     <div>
       <AppBar
-        className={drawerOpen ? classes.appBarShift : classes.appBar}
+        className={drawerStatus ? classes.appBarShift : classes.appBar}
         elevation={0}
         position="relative"
         variant="elevation"
@@ -69,13 +75,21 @@ const DefaultLayout: React.FC = props => {
           >
             <MenuIcon />
           </IconButton>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <DrawerLayout
-        open={drawerOpen}
+        open={drawerStatus}
         width={drawerWidth}
       />
-      <main className={drawerOpen ? classes.contentShift : classes.content}>
+      <main className={drawerStatus ? classes.contentShift : classes.content}>
         {children}
       </main>
     </div>
