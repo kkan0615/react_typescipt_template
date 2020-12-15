@@ -3,6 +3,7 @@ import { ExtendedRouteConfig } from '@/types/routerConfig'
 import Clocks from '../../pages/Clocks/index'
 import Home from '../../pages/Home/index'
 import Test from '../../pages/Test/index'
+import Snackbar from '../../pages/Snackbar/index'
 
 export const DEFAULT_HOME_PATH = '/home'
 
@@ -19,14 +20,21 @@ export const routerConfigs: Array<ExtendedRouteConfig> = [
     title: 'Clocks',
     name: 'clocks',
     path: '/clocks',
-    component: Test,
+    component: Clocks,
   },
   {
     _id: '5fd5b0308f575329028b6b56',
     title: 'Test',
     name: 'test',
     path: '/test',
-    component: Clocks,
+    component: Test,
+  },
+  {
+    _id: '5fd5b0308f575329028b6b56',
+    title: 'Snackbar',
+    name: 'snackbar',
+    path: '/snackbar',
+    component: Snackbar,
   },
 ]
 

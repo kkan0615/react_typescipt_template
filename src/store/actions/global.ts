@@ -4,51 +4,63 @@ export const OPEN_DRAWER = 'OPEN_DRAWER'
 export const CLOSE_DRAWER = 'CLOSE_DRAWER'
 export const ADD_SNACKBAR = 'ADD_SNACKBAR'
 export const REMOVE_SNACKBAR = 'REMOVE_SNACKBAR'
+export const OPEN_LOADING = 'OPEN_LOADING'
+export const CLOSE_LOADING = 'CLOSE_LOADING'
 
 export interface IGlobalState {
   drawer: boolean
   snackbars: Array<ISnackbar>
+  loading: boolean
 }
 
 export const initState: IGlobalState = {
   drawer: true,
   snackbars: [],
-}
-
-// export interface IPayload {
-//   drawer: boolean,
-//   snackbar: ISnackbar
-// }
-
-export interface IGlobalActions {
-  type: string
-  payload: IGlobalState
+  loading: false,
 }
 
 export const globalActions = {
   openDrawer: () => ({
     type: OPEN_DRAWER,
-    payload: {
-      drawer: true,
-    },
+    drawer: true,
   }),
   closeDrawer: () => ({
     type: CLOSE_DRAWER,
-    payload: {
-      drawer: false,
-    },
+    drawer: false,
   }),
-  addSnackbar: (snackbars: Array<ISnackbar>) => ({
+  openLoading: () => ({
+    type: OPEN_LOADING,
+    loading: true,
+  }),
+  closeLoading: () => ({
+    type: CLOSE_LOADING,
+    loading: false,
+  }),
+  addSnackbar: (snackbar: ISnackbar) => ({
     type: ADD_SNACKBAR,
-    payload: {
-      snackbars,
-    },
+    payload: snackbar,
   }),
-  removeSnackbar: (snackbars: Array<ISnackbar>) => ({
+  removeSnackbar: (snackbar: ISnackbar) => ({
     type: REMOVE_SNACKBAR,
-    payload: {
-      snackbars,
-    },
+    payload: snackbar,
   }),
-
 }
+
+export interface DrawerGlobalActionType {
+  type: typeof OPEN_DRAWER | typeof CLOSE_DRAWER
+  payload: boolean
+}
+
+export interface SnackbarGlobalActionType {
+  type: typeof ADD_SNACKBAR | typeof REMOVE_SNACKBAR
+  payload: ISnackbar
+}
+
+export interface LoadingGlobalActionType {
+  type: typeof OPEN_LOADING | typeof CLOSE_LOADING
+  payload: boolean
+}
+
+export type IGlobalActions = DrawerGlobalActionType
+| SnackbarGlobalActionType
+| LoadingGlobalActionType

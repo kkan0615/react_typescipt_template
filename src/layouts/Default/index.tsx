@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -6,10 +6,11 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-
 import { RootState } from '../../store'
 import { globalActions } from '../../store/actions/global'
 import DrawerLayout from './components/drawer'
+import Snackbar from '../../components/common/Snackbar'
+import Loading from '../../components/common/Loading'
 
 const drawerWidth = '17em'
 
@@ -54,6 +55,13 @@ const DefaultLayout: React.FC = props => {
   const dispatch = useDispatch()
   const drawerStatus = useSelector<RootState>(store => store.global.drawer) as boolean
 
+  useEffect(() => {
+    dispatch(globalActions.openLoading())
+    setTimeout(() => {
+      dispatch(globalActions.closeLoading())
+    }, 3000)
+  })
+
   const handleDrawerState = () => {
     if (drawerStatus) dispatch(globalActions.closeDrawer())
     else dispatch(globalActions.openDrawer())
@@ -89,6 +97,8 @@ const DefaultLayout: React.FC = props => {
         open={drawerStatus}
         width={drawerWidth}
       />
+      <Loading />
+      <Snackbar />
       <main className={drawerStatus ? classes.contentShift : classes.content}>
         {children}
       </main>
