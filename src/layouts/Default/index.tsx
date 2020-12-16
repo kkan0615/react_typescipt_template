@@ -59,8 +59,8 @@ const DefaultLayout: React.FC = props => {
     dispatch(globalActions.openLoading())
     setTimeout(() => {
       dispatch(globalActions.closeLoading())
-    }, 3000)
-  })
+    }, 1000)
+  }, [dispatch])
 
   const handleDrawerState = () => {
     if (drawerStatus) dispatch(globalActions.closeDrawer())
